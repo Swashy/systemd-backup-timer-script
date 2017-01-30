@@ -1,1 +1,18 @@
-/etc/systemd/system/wordpress-backup.service
+# Backup service for wordpress directory
+
+[Unit]
+Description=Backups wordpress directory
+
+[Service]
+Type=simple
+#Type=forking (??)
+#Copy the shadow and backup from home directory
+ExecStart=/bin/sh -c "date=$(date "+%F"); backupfile; backupfile="wordpress.bak.$date.tar.gz"; tar --xattrs -czpvf /var/www/html/wordpress.bak.1.7.17.tar.gz /var/www/html/wordpress/"
+
+#Debug. Give us notice that the timer actually ran
+ExecStart=/bin/sh -c "touch /var/www/html/backup.notice.txt"
+ExecStart=/bin/sh -c "echo '/etc/systemd/system/wordpress-backup.service ran at' > /var/www/html/backup.notice.txt"
+ExecStart=/bin/sh -c "date >> /var/www/html/backup.notice.txt"
+
+[Install]
+WantedBy=multi-user.target

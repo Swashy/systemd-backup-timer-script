@@ -1,1 +1,7 @@
-/etc/systemd/system/wordpress-backup.timer
+[Unit]
+Description=Wordpress backup timer
+
+[Timer]
+OnCalendar=daily
+AccuracySec=12h
+Persistent=true
