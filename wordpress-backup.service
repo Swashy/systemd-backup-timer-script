@@ -5,7 +5,7 @@ Description=Backups wordpress directory
 
 [Service]
 Type=simple
-ExecStart=/etc/systemd/system/wordpress-backup.sh
+ExecStart=/usr/local/wordpress-backup.sh
 
 [Install]
 WantedBy=multi-user.target
