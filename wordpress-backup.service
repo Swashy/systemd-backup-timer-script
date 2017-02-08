@@ -5,6 +5,12 @@ Description=Backups wordpress directory
 
 [Service]
 Type=simple
+# Systemd runtime environment settings to prevent files being tarred flooding logs.
+# Found in 'man systemd.exec'
+# probably could set tar to not be so verbose but I learned stuff about systemd!
+#StandardOutput=null
+#StandardError=journal
+##########################
 ExecStart=/usr/local/wordpress-backup.sh
 
 [Install]
